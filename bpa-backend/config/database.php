@@ -1,0 +1,32 @@
+<?php
+// ============================================================
+// Database Configuration
+// ============================================================
+
+// Load env.php if not already loaded
+if (!defined('APP_URL')) {
+    require_once __DIR__ . '/env.php';
+}
+
+define('DB_HOST', $_ENV['DB_HOST'] ?? 'localhost');
+define('DB_PORT', $_ENV['DB_PORT'] ?? '3306');
+define('DB_NAME', $_ENV['DB_NAME'] ?? 'lcc_bpa');
+define('DB_USER', $_ENV['DB_USER'] ?? 'root');
+define('DB_PASS', $_ENV['DB_PASS'] ?? '');
+
+function getDB(): PDO {
+    static $pdo = null;
+    if ($pdo === null) {
+        $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+        $options = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+        $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+        
+        // Set timezone to Asia/Manila
+        $pdo->exec("SET time_zone = '+08:00'");
+    }
+    return $pdo;
+}

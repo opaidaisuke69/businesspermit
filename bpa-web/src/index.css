@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+/* ── LCC BPA Design System ─────────────────────────────────── */
+:root {
+  --midnight:   #073B3A;
+  --dartmouth:  #0B6E4F;
+  --pigment:    #08A045;
+  --emerald:    #21D375;
+  --gold:       #C9A227;
+
+  --bg:         #F0F7F4;
+  --card:       #FFFFFF;
+  --border:     #D1E8E2;
+  --text:       #0D2B28;
+  --text-muted: #4A7A72;
+  --text-light: #8AADA8;
+
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body { margin: 0; background: var(--bg); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-light); }
+
+/* Leaflet */
+.leaflet-container { height: 100%; width: 100%; border-radius: 0.75rem; }
+
+/* Focus ring */
+*:focus-visible { outline: 2px solid var(--pigment); outline-offset: 2px; }
+
+/* Smooth transitions */
+* { transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: 150ms; transition-timing-function: ease; }

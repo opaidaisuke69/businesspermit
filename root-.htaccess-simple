@@ -1,0 +1,11 @@
+# Simple Root .htaccess for lcc.bpa.tetsousangyo.com
+# Place this file in: /home/ihxieqfa/public_html/lcc.bpa.tetsousangyo.com/.htaccess
+
+RewriteEngine On
+
+# Don't redirect if already in bpa-backend or bpa-web
+RewriteCond %{REQUEST_URI} !^/bpa-backend/
+RewriteCond %{REQUEST_URI} !^/bpa-web/
+
+# Redirect to bpa-web
+RewriteRule ^(.*)$ /bpa-web/$1 [L,R=301]
